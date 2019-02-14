@@ -1,0 +1,257 @@
+<br>
+<div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+   Select Exchange Function
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" (click)="navig.ecardc1()">Add Ownership</a>
+    <a class="dropdown-item" (click)="navig.ecardc2()">Remove Ownership</a>
+    <a class="dropdown-item" (click)="navig.ecardc3()">changeTraderConfig</a>
+    <a class="dropdown-item" (click)="navig.ecardc4()">Update Fees Schedule</a>
+    <a class="dropdown-item" (click)="navig.ecardc5()">View Token Fees</a>
+    <a class="dropdown-item" (click)="navig.ecardc6()">Calculate Token Fees</a>  
+    <a class="dropdown-item" (click)="navig.ecardc7()">Check Ownership</a>
+    <a class="dropdown-item" (click)="navig.ecardc8()">Check Trade Active and Lock Details</a>
+  </div>
+</div>
+<!--------------------------------------////////////////////////////------------------------------------------------>
+
+<div class="container col-sm-6"  *ngIf="navig.ecard1"> 
+  <h2>Exchange Function</h2>
+  <div class="card">
+    <div class="card-header">Add Ownership</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="basefee">Ownership Address:</label>
+        <input type="text" class="form-control" #addown1>
+      </div>
+    </div> 
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary" (click)="addown(addown1.value)">Submit</button>&nbsp;
+      <button type="button" class="btn btn-danger" (click)="navig.ecancel1()">Cancel</button>
+    </div>
+  </div>
+</div>
+<!--------------------------------------////////////////////////////------------------------------------------------>
+
+<div class="container col-sm-6"  *ngIf="navig.ecard2"> 
+  <h2>Exchange Function</h2>
+  <div class="card">
+    <div class="card-header">Remove Ownership</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="basefee">Ownership Address:</label>
+        <input type="text" class="form-control" #addown>
+      </div>
+    </div> 
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary" (click)="remown(addown.value)">Submit</button>&nbsp;
+      <button type="button" class="btn btn-danger" (click)="navig.ecancel2()">Cancel</button>
+    </div>
+  </div>
+</div>
+ <!--------------------------------------////////////////////////////------------------------------------------------>
+
+<div class="container col-sm-6"  *ngIf="navig.ecard3">
+  <h2>Exchange Function</h2>
+  <div class="card">
+    <div class="card-header">changeTraderConfig</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="basefee">Trade Active:(Note:True or False)</label>
+        <input type="text" class="form-control" #trade>
+      </div>
+      <div class="form-group">
+          <label for="basefee">DataStore Contract Address:</label>
+          <input type="text" class="form-control" #dataadd>
+        </div>
+        <div class="form-group">
+            <label for="basefee">Transaction Locked Or Not:(Note:True or False)</label>
+            <input type="text" class="form-control" #trans>
+          </div>
+    </div> 
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary" (click)="changeTraderConfig(trade.value,dataadd.value,trans.value)">Submit</button>&nbsp;
+      <button type="button" class="btn btn-danger" (click)="navig.ecancel3()">Cancel</button>
+    </div>
+  </div>
+</div>
+ <!--------------------------------------////////////////////////////------------------------------------------------>
+
+<div class="container col-sm-6" *ngIf="navig.ecard4">
+  <h2>Exchange Function</h2>
+  <div class="card">
+    <div class="card-header">Update Fees Schedule</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="basefee">BaseToken address</label>
+            <input type="text" class="form-control" #baseadd>
+          </div>
+          <div class="form-group">
+              <label for="basefee">EtherToken address</label>
+              <input type="text" class="form-control" #ethadd>
+            </div>
+      <div class="form-group">
+        <label for="basefee">BaseToken Fees:</label>
+        <input type="text" class="form-control" #basefee>
+      </div>
+      <div class="form-group">
+        <label for="etherfee">EtherToken Fees:</label>
+        <input type="text" class="form-control" #etherfee>
+      </div>
+      <div class="form-group">
+        <label for="normalfee">NormalToken Fees:</label>
+        <input type="text" class="form-control" #normalfee>
+      </div>
+    </div> 
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary" (click)="changefees(baseadd.value,ethadd.value,basefee.value,etherfee.value,normalfee.value)">Submit</button>&nbsp;
+      <button type="button" class="btn btn-danger" (click)="navig.ecancel4()">Cancel</button>
+    </div>
+  </div>
+</div>
+ <!--------------------------------------////////////////////////////------------------------------------------------>
+
+<div class="container col-sm-6"  *ngIf="navig.ecard5">
+  <h2>Exchange Function</h2>
+  <div class="card">
+      <div class="card-header">View Token Fees</div>
+      <div class="card-body">
+    <div class="container">
+    <div class="form-check">
+      <label class="form-check-label" for="radio1">
+        <input type="radio" class="form-check-input" #radio1 name="optradio" (click)="trade(radio1.value)" value="0" >BaseToken
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label" for="radio2">
+        <input type="radio" class="form-check-input" #radio2 name="optradio" (click)="trade(radio2.value)" value="1">EtherToken
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label" for="radio2">
+        <input type="radio" class="form-check-input" #radio3 name="optradio" (click)="trade(radio3.value)" value="2">NormalToken
+      </label>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="etherfee">Token Fees:</label>
+         <p>{{fees}}</p>
+      </div>
+    </div>
+    </div> 
+    <div class="card-footer">
+      <!-- <button type="button" class="btn btn-primary" (click)="trade(radio.value)">Submit</button>&nbsp; -->
+      <button type="button" class="btn btn-danger" (click)="navig.ecancel5()">Cancel</button>
+    </div>
+  </div>
+  </div>
+<!--------------------------------------////////////////////////////------------------------------------------------>
+
+  <div class="container col-sm-6"  *ngIf="navig.ecard6">
+      <h2>Exchange Function</h2>
+      <div class="card">
+        <div class="card-header">Calculate Token Fees</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="basefee">Token Value</label>
+            <input type="number" class="form-control" #TokenValue>
+          </div>
+          <div class="form-group">
+              <label for="basefee">Token address</label>
+              <input type="text" class="form-control" #Tokenadd>
+            </div>
+            <div class="form-group">
+                <label for="etherfee">Token Fees:</label>
+                 <p>{{calcfees}}</p>
+              </div>
+            </div>
+        </div> 
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary" (click)="calctrade(TokenValue.value,Tokenadd.value)">Submit</button>&nbsp;
+          <button type="button" class="btn btn-danger" (click)="navig.ecancel6()">Cancel</button>
+        </div>
+      </div>
+  <!--------------------------------------////////////////////////////------------------------------------------------>
+              <div class="container col-sm-6"  *ngIf="navig.ecard7">
+                  <h2>Exchange Function</h2>
+                  <div class="card">
+                    <div class="card-header">Check Ownership</div>
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="basefee">Owner Address</label>
+                        <input type="text" class="form-control" #ownadd>
+                      </div>
+                        <div class="form-group">
+                            <label for="etherfee">Result:</label>
+                             <p>{{owner}}</p>
+                          </div>
+                        </div>
+                    </div> 
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary" (click)="ownership(ownadd.value)">Submit</button>&nbsp;
+                      <button type="button" class="btn btn-danger" (click)="navig.ecancel7()">Cancel</button>
+                    </div>
+                  </div>
+  <!--------------------------------------////////////////////////////------------------------------------------------>
+
+                  <div class="container col-sm-6"  *ngIf="navig.ecard8">
+                      <h2>Exchange Function</h2>
+                      <div class="card">
+                        <div class="card-header">Check Trade is Active</div>
+                        <div class="card-body">
+                          <h2>Trade Active Details</h2>
+                          <div class="form-group">
+                              <label for="etherfee">Result:</label>
+                               <p>{{active}}</p>
+                            </div>
+                            <h2>Trade Lock Details</h2>
+                                <div class="form-group">
+                                    <label for="etherfee">Result:</label>
+                                     <p>{{locked}}</p>
+                                  </div>
+                                </div>
+                        </div> 
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-primary" (click)="tradeactive()">Submit</button>&nbsp;
+                          <button type="button" class="btn btn-danger" (click)="navig.ecancel8()">Cancel</button>
+                        </div>
+                      </div>
+  <!--------------------------------------////////////////////////////------------------------------------------------>
+
+                      <!-- <div class="container col-sm-6"  *ngIf="navig.ecard10">
+                          <h2>Exchange Function</h2>
+                          <div class="card">
+                            <div class="card-header">Check Trade is Locked</div>
+                            <div class="card-body">
+                             <h2>Trade is Locked Or Unlocked</h2>
+                                <div class="form-group">
+                                    <label for="etherfee">Result:</label>
+                                     <p>{{locked}}</p>
+                                  </div>
+                                </div>
+                            </div> 
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-primary" (click)="tradelocked()">Submit</button>&nbsp;
+                              <button type="button" class="btn btn-danger" (click)="navig.ecancel9()">Cancel</button>
+                            </div>
+                          </div> -->
+  <!--------------------------------------////////////////////////////------------------------------------------------>
+
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="validate1">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+           Transaction Is Failed
+        </div>
+
+        <div class="alert alert-success alert-dismissible fade show" *ngIf="validate2">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+             Transaction Is Completed
+          </div>
+    <ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple">
+   <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+

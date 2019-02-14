@@ -1,0 +1,248 @@
+<br>
+<div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+   Select Basket Function
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" (click)="navig.cardc1()">Update Fees Schedule</a>
+    <a class="dropdown-item" (click)="navig.cardc2()">View Token Fees</a>
+    <a class="dropdown-item" (click)="navig.cardc3()">Calculate Token Fees</a>
+    <a class="dropdown-item" (click)="navig.cardc4()">Register Publisher</a>
+    <a class="dropdown-item" (click)="navig.cardc5()">Remove Publisher</a>
+    <a class="dropdown-item" (click)="navig.cardc6()">Exchange Allowed for Publisher</a>
+    <a class="dropdown-item" (click)="navig.cardc7()">Register DataStorage and Safewallet Address fot TransferProxy Contract</a>
+    <a class="dropdown-item" (click)="navig.cardc8()">updateExchange in Portfolio contract</a>
+  </div>
+</div>
+<!-----------------------------------/////////////////////////---------------------------------------->
+<div class="container col-sm-6" *ngIf="navig.card1">
+  <h2>Basket Function</h2>
+  <div class="card">
+    <div class="card-header">Update Fees Schedule</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="basefee">BaseToken Fees:</label>
+        <input type="text" class="form-control" #basefee>
+      </div>
+      <div class="form-group">
+        <label for="etherfee">EtherToken Fees:</label>
+        <input type="text" class="form-control" #etherfee>
+      </div>
+      <div class="form-group">
+        <label for="normalfee">NormalToken Fees:</label>
+        <input type="text" class="form-control" #normalfee>
+      </div>
+    </div> 
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary" (click)="changefees(basefee.value,etherfee.value,normalfee.value)">Submit</button>&nbsp;
+      <button type="button" class="btn btn-danger" (click)="navig.cancel1()">Cancel</button>
+    </div>
+  </div>
+</div>
+<!--------------------------------------////////////////////////////------------------------------------------------>
+<div class="container col-sm-6"  *ngIf="navig.card2">
+  <h2>Basket Function</h2>
+  <div class="card">
+      <div class="card-header">View Token Fees</div>
+      <div class="card-body">
+    <div class="container">
+    <div class="form-check">
+      <label class="form-check-label" for="radio1">
+        <input type="radio" class="form-check-input" #radio1 name="optradio" (click)="trade(radio1.value)" value="0" >BaseToken
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label" for="radio2">
+        <input type="radio" class="form-check-input" #radio2 name="optradio" (click)="trade(radio2.value)" value="1">EtherToken
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label" for="radio2">
+        <input type="radio" class="form-check-input" #radio3 name="optradio" (click)="trade(radio3.value)" value="2">NormalToken
+      </label>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="etherfee">Token Fees:</label>
+         <p>{{fees}}</p>
+      </div>
+    </div>
+    </div> 
+    <div class="card-footer">
+      <!-- <button type="button" class="btn btn-primary" (click)="trade(radio.value)">Submit</button>&nbsp; -->
+      <button type="button" class="btn btn-danger" (click)="navig.cancel2()">Cancel</button>
+    </div>
+  </div>
+  </div>
+<!--------------------------------------////////////////////////////------------------------------------------------>
+  <div class="container col-sm-6"  *ngIf="navig.card3">
+      <h2>Basket Function</h2>
+      <div class="card">
+        <div class="card-header">Calculate Token Fees</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="basefee">Token Value</label>
+            <input type="number" class="form-control" #TokenValue>
+          </div>
+          <div class="container">
+              <label for="basefee">Choose Token</label>
+              <br>
+              <!-- <div class="form-check">
+                <label class="form-check-label" for="radio1">
+                  <input type="radio" class="form-check-input" #radio1 name="optradio" (click)="calctrade(TokenValue.value,radio1.value)" value="0" >BaseToken
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="radio2">
+                  <input type="radio" class="form-check-input" #radio2 name="optradio" (click)="calctrade(TokenValue.value,radio2.value)" value="1">EtherToken
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="radio2">
+                  <input type="radio" class="form-check-input" #radio3 name="optradio" (click)="calctrade(TokenValue.value,radio3.value)" value="2">NormalToken
+                </label>
+              </div> -->
+              <button type="button" class="btn btn-primary" (click)="calctrade(TokenValue.value,0)">BaseToken</button><br><br>
+              <button type="button" class="btn btn-primary" (click)="calctrade(TokenValue.value,1)">EtherToken</button><br><br>
+              <button type="button" class="btn btn-primary" (click)="calctrade(TokenValue.value,2)">NormalToken</button>
+              <br><br>
+              <div class="form-group">
+                  <label for="etherfee">Token Fees:</label>
+                   <p>{{calcfees}}</p>
+                </div>
+              </div>
+        </div> 
+        <div class="card-footer">
+          <button type="button" class="btn btn-danger" (click)="navig.cancel3()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <br>
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="validate">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+      please enter the value greater than {{val}}
+    </div>
+    <!--------------------------------------////////////////////////////------------------------------------------------>
+    <div class="container col-sm-6"  *ngIf="navig.card4">
+        <h2>Basket Function</h2>
+        <div class="card">
+          <div class="card-header">Register Publisher</div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="basefee">Publisher Address:</label>
+              <input type="text" class="form-control" #regpub>
+            </div>
+          </div> 
+          <div class="card-footer">
+            <button type="button" class="btn btn-primary" (click)="regpublisher(regpub.value)">Submit</button>&nbsp;
+            <button type="button" class="btn btn-danger" (click)="navig.cancel4()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    <!--------------------------------------////////////////////////////------------------------------------------------>
+
+    <div class="container col-sm-6"  *ngIf="navig.card5"> 
+        <h2>Basket Function</h2>
+        <div class="card">
+          <div class="card-header">Remove Publisher</div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="basefee">Publisher Address:</label>
+              <input type="text" class="form-control" #rempub>
+            </div>
+          </div> 
+          <div class="card-footer">
+            <button type="button" class="btn btn-primary" (click)="rempublisher(rempub.value)">Submit</button>&nbsp;
+            <button type="button" class="btn btn-danger" (click)="navig.cancel5()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    <!--------------------------------------////////////////////////////------------------------------------------------>
+
+    <div class="container col-sm-6"  *ngIf="navig.card6">
+        <h2>Basket Function</h2>
+        <div class="card">
+          <div class="card-header">Exchange Allowed for Publisher</div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="basefee">Publisher Address:</label>
+              <input type="text" class="form-control" #exgpub>
+            </div>
+            <div class="form-group">
+                <label for="etherfee">Result:</label>
+                 <p>{{allowance}}</p>
+              </div>
+          </div> 
+          <div class="card-footer">
+            <button type="button" class="btn btn-primary" (click)="exgpublisher(exgpub.value)">Submit</button>&nbsp;
+            <button type="button" class="btn btn-danger" (click)="navig.cancel6()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    <!--------------------------------------////////////////////////////------------------------------------------------>
+    <div class="container col-sm-6"  *ngIf="navig.card7">
+        <h2>Basket Function</h2>
+        <div class="card">
+          <div class="card-header">Register DataStorage and Safewallet Address fot TransferProxy Contract</div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="basefee">ProtoStorage Address:</label>
+              <input type="text" class="form-control" #dataadd>
+            </div>
+            <div class="form-group">
+                <label for="basefee">Safewallet Address:</label>
+                <input type="text" class="form-control" #safeadd>
+              </div>
+          </div> 
+          <div class="card-footer">
+            <button type="button" class="btn btn-primary" (click)="regconfig(dataadd.value,safeadd.value)">Submit</button>&nbsp;
+            <button type="button" class="btn btn-danger" (click)="navig.cancel7()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    <!--------------------------------------////////////////////////////------------------------------------------------>
+    <div class="container col-sm-6"  *ngIf="navig.card8">
+        <h2>Basket Function</h2>
+        <div class="card">
+          <div class="card-header">updateExchange in Portfolio contract </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="basefee">ProtoStorage Address:</label>
+              <input type="text" class="form-control" #dataadd>
+            </div>
+            <div class="form-group">
+                <label for="basefee">Feecalculator Address:</label>
+                <input type="text" class="form-control" #feeadd>
+              </div>
+              <div class="form-group">
+                  <label for="basefee">TransferProxy Address:</label>
+                  <input type="text" class="form-control" #transadd>
+                </div>
+                <div class="form-group">
+                    <label for="basefee">EtherToken Address:</label>
+                    <input type="text" class="form-control" #etheradd>
+                  </div>
+          </div> 
+          <div class="card-footer">
+            <button type="button" class="btn btn-primary" (click)="updateExchange(dataadd.value,feeadd.value,transadd.value,etheradd.value)">Submit</button>&nbsp;
+            <button type="button" class="btn btn-danger" (click)="navig.cancel8()">Cancel</button>
+          </div>
+        </div>
+      </div>
+          <!--------------------------------------////////////////////////////------------------------------------------------>
+          <div class="alert alert-danger alert-dismissible fade show" *ngIf="validate1">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+               Transaction Is Failed
+            </div>
+
+            <div class="alert alert-success alert-dismissible fade show" *ngIf="validate2">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                 Transaction Is Completed
+              </div>
+          <ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

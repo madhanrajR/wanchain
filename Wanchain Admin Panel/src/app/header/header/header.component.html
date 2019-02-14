@@ -1,0 +1,75 @@
+ <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <a class="navbar-brand">
+          <img class="text-center" src="../../../assets/9233abf3-e3ee-44dc-9923-53f2dcb319b9.png" alt="Los Angeles" width="50" height="50"><span style="color:white">Wanchain Admin Panel</span>
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse " id="navbarResponsive">
+          <ul class="navbar-nav ">
+              <li class="nav-item active" *ngIf="auth.isLoggednIn()&&home">
+                  <a class="nav-link"  routerLink="home">Home
+                      <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="false==(auth.isLoggednIn()&&home)">
+                  <a class="nav-link"  routerLink="home" (click)="home1()">Home
+                      <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+              <li class="nav-item active" *ngIf="auth.isLoggednIn()&&basket">
+                <a class="nav-link"  routerLink="basket">Basket
+                    <span class="sr-only">(current)</span>
+                  </a>
+              </li>
+              <li class="nav-item" *ngIf="false==(auth.isLoggednIn()&&basket)">
+                <a class="nav-link"  routerLink="basket" (click)="basket1()">Basket
+                    <span class="sr-only">(current)</span>
+                  </a>
+              </li>
+
+                  <li class="nav-item active" *ngIf="auth.isLoggednIn()&&exchange">
+                    <a class="nav-link" routerLink="exchange">Exchange
+                        <span class="sr-only">(current)</span>
+                      </a>
+            </li>
+            <li class="nav-item" *ngIf="false==(auth.isLoggednIn()&&exchange)">
+              <a class="nav-link" routerLink="exchange" (click)="exchange1()">Exchange
+                  <span class="sr-only">(current)</span>
+                </a>
+      </li>
+          </ul>
+          <div class="example col-md-4 col-sm-4 col-xs-5 ">
+              <span class="count_top"><i class="fa fa-user"></i><b>Wanchain Account Address</b></span>
+              <div class="count green"><p>{{address}}</p></div>
+          </div>
+          <div class="example1 col-md-4 col-sm-4 col-xs-5" >
+              <span class="count_top"><i class="fa fa-user"></i><b>Wanchain Account Balance</b></span>
+              <div class="count green"><p>{{balance1}}</p></div>
+         </div>
+         <ul class="navbar-nav ml-auto col-md-1 col-sm-1 col-xs-2">
+                
+            <li class="nav-item active" *ngIf="auth.isLoggednIn()">
+              <a class="nav-link" (click)="auth.logout()">Logout</a>
+            </li>
+           
+          </ul>
+        </div>
+        
+            <!-- <ul class="navbar-nav ml-auto">
+                
+            <li class="nav-item active" *ngIf="auth.isLoggednIn()">
+              <a class="nav-link" (click)="auth.logout()">Logout</a>
+            </li>
+           
+          </ul> -->
+       
+    </nav>
+  
+</div> 
+
+
+
+
