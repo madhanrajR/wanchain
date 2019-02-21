@@ -180,7 +180,9 @@ var wanaddress=req.body.address;
     console.log(serializedTx)
        _web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex')).on('receipt', receipt => {
           console.log(receipt);
-         _web3.eth.getBalance(address,function(err,result){
+          add= _web3.eth.accounts.privateKeyToAccount('0X'+ethaddress);
+       var addr=add['address'];
+         _web3.eth.getBalance(addr,function(err,result){
             console.log("Value after increment: " + result) 
              });
          if(receipt['status'])

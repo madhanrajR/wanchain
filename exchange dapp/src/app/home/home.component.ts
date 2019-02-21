@@ -6,6 +6,7 @@ import Web3 from 'web3';
 import wanUtil from 'wanchain-util';
 // var wanUtil = require('wanchain-util')
 var Tx = wanUtil.wanchainTx;
+import { NgxSpinnerService } from 'ngx-spinner';
 import * as ex from 'ethereumjs-tx';
 import { Buffer } from "buffer";
 @Component({
@@ -32,7 +33,7 @@ private name='madhan';
 web3: any;
 _web3:any;
 uri = 'http://localhost:3000';
-  constructor(private http:HttpClient) 
+  constructor(private http:HttpClient,private spinner: NgxSpinnerService) 
   { 
     console.log('home')
      this.web3 = new Web3(new Web3.providers.HttpProvider('http://18.216.117.215:8545'));
@@ -41,13 +42,13 @@ uri = 'http://localhost:3000';
     console.log(this.web3.eth.accounts._provider);
     console.log(this._web3.eth.accounts._provider);
     //new this.web3(new this.web3.providers.HttpProvider("http://18.216.117.215:8545"));
-   
+    setInterval(() => {
       this.http.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD').subscribe(data1 => {
         this.data=data1;
         this.usd=this.data.RAW.ETH.USD.PRICE;
         this.lastupdate=this.data.RAW.ETH.USD.LASTUPDATE;
         this.market=this.data.RAW.ETH.USD.MKTCAP;
-        console.log(data1)
+        //console.log(data1)
         // console.log(data1['data'].quotes.USD.price);
         // console.log(data1['data'].last_updated)
         // console.log(data1['data'].quotes.USD.market_cap);
@@ -58,26 +59,26 @@ uri = 'http://localhost:3000';
         this.usd1=this.data.RAW.WAN.USD.PRICE;
         this.lastupdate1=this.data.RAW.WAN.USD.LASTUPDATE;
         this.market1=this.data.RAW.WAN.USD.MKTCAP;
-        console.log(data2)
+       // console.log(data2)
         // console.log(data1['data'].quotes.USD.price);
         // console.log(data1['data'].last_updated)
         // console.log(data1['data'].quotes.USD.market_cap);
       })
 
       this.http.get('https://min-api.cryptocompare.com/data/price?fsym=WAN&tsyms=ETH,USD,EUR').subscribe(data1 => {
-console.log(data1['ETH'])
+//console.log(data1['ETH'])
 this.ethvalue=data1['ETH']/100;
-console.log(this.ethvalue)
+//console.log(this.ethvalue)
     })
 
     this.http.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=WAN,USD,EUR').subscribe(data1 => {
-      console.log(data1['WAN'])
+     // console.log(data1['WAN'])
       this.wanvalue=data1['WAN']/100;
-      console.log(this.wanvalue)
+     // console.log(this.wanvalue)
           })
 
           // this.http.get('https://api.blockcypher.com/v1/btc/test3/addrs').subscribe(data1 => {console.log(data1)});
-
+        }, 1000);
   }
 
   ngOnInit() {
@@ -220,6 +221,7 @@ exchange(wan,eth)
     address:this.address,
     address1:this.address1
   }
+  this.spinner.show();
   return this.http.post(this.uri+'/exchange',obj).subscribe(res=>{
     console.log(res)
     var address;
@@ -239,9 +241,11 @@ address=add['address'];
                             this.res1=result/1000000000000000000;
                             (document.getElementById('puk1')as HTMLInputElement).value=this.res1.toFixed(4);
                  });
+                 this.spinner.hide();
   },
   err=>
   {
+    this.spinner.hide();
 console.log(err)
   }
   )
@@ -375,6 +379,7 @@ exchange2(eth,wan)
     address:this.address,
     address1:this.address1
   }
+  this.spinner.show();
   return this.http.post(this.uri+'/exchange1',obj).subscribe(res=>{
     console.log(res)
     var address;
@@ -394,9 +399,11 @@ address=add['address'];
                             this.res1=result/1000000000000000000;
                             (document.getElementById('puk1')as HTMLInputElement).value=this.res1.toFixed(4);
                  });
+                 this.spinner.hide();
   },
   err=>
   {
+    this.spinner.hide();
 console.log(err)
   }
   )
