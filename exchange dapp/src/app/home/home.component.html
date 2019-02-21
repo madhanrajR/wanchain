@@ -1,0 +1,144 @@
+
+
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">EXCHANGE DAPP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>     -->
+      </ul>
+    </div>  
+  </nav>
+  <br>
+  <div class="container" >
+<h2>Crypto Currency Details</h2>     
+    <table class="table table-striped table-sm table-bordered">
+      <thead>
+        <tr>
+          <th>Cryptocurrency Name</th>
+          <th>USD Value</th>
+          <th>Last Updated</th>
+          <th>Market Cap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ETH</td>
+          <td>{{usd}}</td>
+          <td>{{lastupdate}}</td>
+          <td>{{market}}</td>
+        </tr>
+        <tr>
+          <td>WAN</td>
+          <td>{{usd1}}</td>
+          <td>{{lastupdate1}}</td>
+          <td>{{market1}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    
+  </div>
+<br><br>
+<div class="wrapper">
+  <button type="button" class="btn btn-dark" style='margin-right:26px' (click)="wan()">Exchange WAN to ETH </button>
+  <button type="button" class="btn btn-dark" style='margin-right:26px'(click)="eth()">Exchange ETH to WAN</button>
+</div>
+<br>
+<div class="container" *ngIf="show==true">
+  <div class="card">
+    <div class="card-header">Exchange WAN to ETH</div>
+    <div class="card-body">
+        <div class="wrapper">
+          <div class="row">
+            <div class="col-sm-9">
+                <input type="text" placeholder="WAN Private key" #a (input)="length(a.value)" style='margin-right:20px; width:420px;' class="form-control ds" id="name" >
+            </div>
+            <div class="col-sm-3">
+                <input type="text" placeholder="WAN Balance" style='margin-right:20px;width:100px;'  class="form-control ds" id="puk"  readonly>
+            </div>
+          </div>
+      </div><br>
+      <div class="wrapper">
+          <div class="row">
+              <div class="col-sm-9">
+                  <input type="text" placeholder="ETH Private Address" #b (input)="length1(b.value)" style='margin-right:20px; width:420px;' class="form-control ds" id="name" >
+              </div>
+              <div class="col-sm-3">
+                  <input type="text" placeholder="ETH Balance" style='margin-right:20px;width:100px;'  class="form-control ds" id="puk1"  readonly><br>
+              </div>
+            </div>
+      </div>
+      <div class="row">
+      <div class="col-sm-6">
+          <input type="text" placeholder="WAN Amount" #c (input)="length2(c.value)" class="form-control ds" value=0 id="name" >
+      </div>
+    
+      <div class="col-sm-6">
+          <input type="text" placeholder="ETH Amount" #d class="form-control ds" id="puk2"  readonly>
+      </div>
+    </div>
+      <!-- <button type="button" class="btn btn-dark">Submit</button> -->
+    </div> 
+   <div class="card-footer">
+      <div class="wrapper">
+      <button type="button" class="btn btn-dark" style='margin-right:26px' (click)="exchange(c.value,d.value)">Submit</button> 
+      <button type="button" class="btn btn-dark" style='margin-right:26px' (click)="cancel()">Cancel</button> 
+      </div>
+    </div> 
+  </div>
+</div>
+<div class="container" *ngIf="show1==true">
+  <div class="card">
+    <div class="card-header">Exchange ETH to WAN</div>
+    <div class="card-body">
+        <div class="wrapper">
+          <div class="row">
+            <div class="col-sm-9">
+                <input type="text" placeholder="ETH Private key" #k (input)="length1(k.value)" style='margin-right:20px; width:420px;' class="form-control ds" id="name" >
+            </div>
+            <div class="col-sm-3">
+                <input type="text" placeholder="ETH Balance" style='margin-right:20px;width:100px;'  class="form-control ds" id="puk1"  readonly>
+            </div>
+          </div>
+      </div><br>
+      <div class="wrapper">
+          <div class="row">
+              <div class="col-sm-9">
+                  <input type="text" placeholder="WAN Private key" #l (input)="length(l.value)" style='margin-right:20px; width:420px;' class="form-control ds" id="name" >
+              </div>
+              <div class="col-sm-3">
+                  <input type="text" placeholder="WAN Balance" style='margin-right:20px;width:100px;'  class="form-control ds" id="puk"  readonly><br>
+              </div>
+            </div>
+      </div>
+      <div class="row">
+      <div class="col-sm-6">
+          <input type="text" placeholder="ETH Amount" #m (input)="length3(m.value)" class="form-control ds" value=0 id="name" >
+      </div>
+    
+      <div class="col-sm-6">
+          <input type="text" placeholder="WAN Amount" #n class="form-control ds" id="puk5"  readonly>
+      </div>
+    </div>
+      <!-- <button type="button" class="btn btn-dark">Submit</button> -->
+    </div> 
+   <div class="card-footer">
+      <div class="wrapper">
+      <button type="button" class="btn btn-dark" style='margin-right:26px' (click)="exchange2(m.value,n.value)">Submit</button> 
+      <button type="button" class="btn btn-dark" style='margin-right:26px' (click)="cancel1()">Cancel</button> 
+      </div>
+    </div> 
+  </div>
+</div>
