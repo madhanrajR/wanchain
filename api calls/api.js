@@ -7,7 +7,8 @@ var Web3=require('web3')
 var wanUtil=require('wanchain-util')
 var Tx = wanUtil.wanchainTx;
 const EthereumTx = require('ethereumjs-tx')
-
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 var web3 = new Web3(new Web3.providers.HttpProvider('http://18.216.117.215:8545'));
      var _web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/ed9c627571c540d39a95770ce85f7534'));
 app.use(bodyParser.json());
@@ -24,8 +25,10 @@ app.get('/',(req,res)=>{
 app.post('/exchange',(req,res)=>{
 var eth=req.body.eth;
 var wan=req.body.wan;
-var address1=req.body.address;
+var address1=cryptr.decrypt(req.body.address);
+console.log(req.body.address);
 
+console.log(address1)
   var add;
 var address;
 add= web3.eth.accounts.privateKeyToAccount('0X'+address1);
@@ -70,7 +73,7 @@ console.log(address);
        if(receipt['status'])
       {
         console.log('status2');
-       var address1=req.body.address1;
+       var address1=cryptr.decrypt(req.body.address1);
         var add;
         var add1;
       var address;
@@ -140,8 +143,8 @@ console.log(address);
 app.post('/exchange1',(req,res)=>{
   var eth=req.body.eth;
 var wan=req.body.wan;
-var wanaddress=req.body.address;
-  var ethaddress=req.body.address1;
+var wanaddress=cryptr.decrypt(req.body.address);
+  var ethaddress=cryptr.decrypt(req.body.address1);
   var add;
   var address;
   add= _web3.eth.accounts.privateKeyToAccount('0X'+ethaddress);

@@ -6,6 +6,8 @@ var data = fs.readFileSync('../output.txt')
 var mongo = require('mongodb');
 var MongoClient=require('mongodb').MongoClient
 let address=require('./address.model')
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 // http.createServer(function (request, response) {
 //    response.writeHead(200, {'Content-Type': 'text/plain'});
 //    response.end(data.toString());
@@ -50,6 +52,11 @@ var server = app.listen(8081,function()
    var host=server.address().address;
    var port=server.address().port;
    console.log(add,host,port)
+const encryptedString = cryptr.encrypt('fea989bb151a3487737032923b440efee0bcd4210406f1f0960109c2d945a7fb');
+const decryptedString = cryptr.decrypt(encryptedString);
+ 
+console.log(encryptedString); // 5590fd6409be2494de0226f5d7
+console.log(decryptedString); // bacon
 })
 console.log('Server running at http://127.0.0.1:8081/');
 //console.log(data.toString());

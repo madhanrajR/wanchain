@@ -7,6 +7,8 @@ import wanUtil from 'wanchain-util';
 // var wanUtil = require('wanchain-util')
 var Tx = wanUtil.wanchainTx;
 import { NgxSpinnerService } from 'ngx-spinner';
+import Cryptr from 'cryptr';
+const cryptr = new Cryptr('myTotalySecretKey');
 import * as ex from 'ethereumjs-tx';
 import { Buffer } from "buffer";
 @Component({
@@ -218,9 +220,10 @@ exchange(wan,eth)
   const obj={
     wan:wan,
     eth:eth,
-    address:this.address,
-    address1:this.address1
+    address: cryptr.encrypt(this.address),
+    address1: cryptr.encrypt(this.address1)
   }
+  console.log(obj)
   this.spinner.show();
   return this.http.post(this.uri+'/exchange',obj).subscribe(res=>{
     console.log(res)
@@ -376,8 +379,8 @@ exchange2(eth,wan)
   const obj={
     wan:wan,
     eth:eth,
-    address:this.address,
-    address1:this.address1
+    address:cryptr.encrypt(this.address),
+    address1:cryptr.encrypt(this.address1)
   }
   this.spinner.show();
   return this.http.post(this.uri+'/exchange1',obj).subscribe(res=>{
