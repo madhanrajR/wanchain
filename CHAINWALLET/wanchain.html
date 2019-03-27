@@ -85,18 +85,14 @@
   </body>
 <script>
  
-
         var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 function Account()
 {
 	var a=document.getElementById("a").value;
  web3.eth.personal.newAccount(a,(err,res)=>{
       document.getElementById("b").value=res;
-
     });
 }   
-
-
 var fileChange =function (event) 
 {
   var password=document.getElementById("pwd1").value;
@@ -111,24 +107,18 @@ var fileChange =function (event)
    // alert("hi")
     keythereum.recover(password,keystore, function (privateKey) {
      // var string = new TextDecoder("utf-8").decode(privateKey);
-
    // console.log(new TextDecoder("utf-8").decode(privateKey));
    console.log(privateKey);
    console.log(privateKey.toString('hex'));
-
     document.getElementById("usr2").value=privateKey.toString('hex');
-
  } ); 
   } 
 }
-
-
 // <input type='file' accept='image/*' onchange='openFile(event)'><br>
 // <img id='output'>
 // <script>
 //   var openFile = function(event) {
 //     var input = event.target;
-
 //     var reader = new FileReader();
 //     reader.onload = function(){
 //       var dataURL = reader.result;
@@ -137,6 +127,5 @@ var fileChange =function (event)
 //     };
 //     reader.readAsDataURL(input.files[0]);
 //   };
-
 </script>
 </html>
