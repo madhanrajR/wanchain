@@ -23,7 +23,7 @@
     "core-js": "^2.5.4",
     "cryptr": "^4.0.2",
     "ethereumjs-tx": "^1.3.7",
-    "jsonwebtoken": "^8.5.0",
+    "jsonwebtoken": "^9.0.0",
     "ngx-spinner": "^7.0.0",
     "rxjs": "^6.0.0",
     "wanchain-util": "^1.2.0",
